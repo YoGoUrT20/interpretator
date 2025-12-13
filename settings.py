@@ -1,0 +1,8 @@
+# Model Settings
+INITIAL_INTERPRETER_MODEL = "openai/gpt-3.5-turbo"
+BEST_ANSWERS_SELECTOR_MODEL = "openai/gpt-4o"
+
+# Execution Settings
+INTERPRETATION_REQUESTS_AMOUNT = 10
+BEST_ANSWERS_AMOUNT = 1
+
