@@ -43,14 +43,17 @@ def main():
     if responses:
         console.print(f"[green]✓ Generated {len(responses)} responses.[/green]")
         
-        console.rule("[bold]Ranking Phase[/bold]")
-        ranking = interpreter.rank_responses(question, responses, judge_model, top_k)
-        
-        console.print("\n[bold]Ranking Complete![/bold]")
-        console.print(f"Results saved to [underline]{interpreter.output_dir / 'final_ranking.md'}[/underline]")
-        
-        console.rule("[bold]Preview[/bold]")
-        console.print(Markdown(ranking))
+        if top_k > 0:
+            console.rule("[bold]Ranking Phase[/bold]")
+            ranking = interpreter.rank_responses(question, responses, judge_model, top_k)
+            
+            console.print("\n[bold]Ranking Complete![/bold]")
+            console.print(f"Results saved to [underline]{interpreter.output_dir / 'final_ranking.md'}[/underline]")
+            
+            console.rule("[bold]Preview[/bold]")
+            console.print(Markdown(ranking))
+        else:
+            console.print("[yellow]Ranking skipped (BEST_ANSWERS_AMOUNT is 0).[/yellow]")
     else:
         console.print("[red]No responses were generated.[/red]")
 
